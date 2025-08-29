@@ -1,0 +1,13 @@
+‌标准PR操作流程‌
+
+‌1、Fork项目‌：在目标仓库点击“Fork”按钮，创建个人副本。‌‌
+‌2、克隆到本地‌：使用git clone命令下载Fork后的仓库。‌‌
+4‌、创建分支‌：基于主分支新建特性分支（如git checkout -b feature-branch）。‌‌
+5、修改并提交代码‌：
+6、本地完成代码修改后，执行git add和git commit‌‌
+7、推送至远程分支：git push origin feature-branch‌‌
+8、发起 PR‌ 
+  8.1、在GitHub仓库页面点击“New pull request”。
+  8.2、选择目标分支（如main）与源分支（你的特性分支）。‌‌
+  8.3、填写标题和详细描述，说明修改内容和目的。‌‌
+  8.4、等待审查与合并‌：维护者审核通过后，点击“Merge pull request”完成合并。‌‌
