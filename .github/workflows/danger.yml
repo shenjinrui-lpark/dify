@@ -1,0 +1,28 @@
+name: Danger
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install danger@13.0.5 ts-node @commitlint/config-conventional@17.8.1 @commitlint/lint@17.8.1 @commitlint/load@17.8.1
+
+      - name: Run Danger
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx danger ci
