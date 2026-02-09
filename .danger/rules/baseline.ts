@@ -24,7 +24,8 @@ export const baselineCheck = async ({ danger, warn, fail, message }: RuleContext
 
   // 强制环境
   if (!/(测试|预发布)/.test(prTitle)) {
-    warn('❌PR 标题需要包含环境，如 测试或预发布')
+  //  warn('❌PR 标题需要包含环境，如 测试或预发布')
+    fail('❌PR 标题需要包含环境，如 测试或预发布')
   }
 
   // 修改文件数量提醒
