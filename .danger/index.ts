@@ -1,24 +1,20 @@
-import { RuleContext, RuleFunction } from './types'
+// 只保留类型 import（TS 会自动擦除）
+import type { RuleContext, RuleFunction } from './types'
+
+// 用 require 引入规则
+//const baselineCheck = require('./rules/baseline')
+const baselineCheck = require('./rules/baseline').baselineCheck
+
 
 // 同步规则
-import { baselineCheck } from './rules/baseline'
+const syncRules: RuleFunction[] = []
 
 // 异步规则
-
-// 同步规则列表
-export const syncRules: RuleFunction[] = []
-
-// 异步规则列表
-export const asyncRules: RuleFunction[] = [baselineCheck]
+const asyncRules: RuleFunction[] = [baselineCheck]
 
 // 执行所有规则
 export const runAllRules = async (ctx: RuleContext): Promise<void> => {
-  // 执行同步规则
   syncRules.forEach((rule) => rule(ctx))
-
-  // 执行异步规则
   await Promise.all(asyncRules.map((rule) => rule(ctx)))
-
-  // 正向激励
   ctx.message('✅ 感谢你的贡献，Danger 已完成基础检查')
 }
